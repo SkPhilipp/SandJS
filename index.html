@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>SandJS by Hileco</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">SandJS</h1>
+        <p class="header"></p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/Hileco/SandJS/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/Hileco/SandJS/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/Hileco/SandJS">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/Hileco">Hileco</a></p>
+
+
+      </header>
+      <section>
+        <h2>
+<a name="sandjs" class="anchor" href="#sandjs"><span class="octicon octicon-link"></span></a>SandJS</h2>
+
+<p>SandJS allows communication between two windows, with two very powerful concepts; Sandboxing and Blackboxing.</p>
+
+<h3>
+<a name="sandboxing" class="anchor" href="#sandboxing"><span class="octicon octicon-link"></span></a>Sandboxing</h3>
+
+<p>Requirements: Two domains. For example, <a href="http://hileco.com">hileco.com</a> ("Host Domain") and sandbox.hileco.com ("Sandbox Domain"). The sandbox domain must be solely dedicated to executing potentially unsafe JavaScript ("Code").</p>
+
+<p>Sandboxing allows you to execute code in the sandbox domain, without it being able to harm the host domain. The host domain connects to the sandbox domain via SandJS, and can then send code across for the sandbox domain to interpret and or execute.</p>
+
+<h3>
+<a name="blackboxing" class="anchor" href="#blackboxing"><span class="octicon octicon-link"></span></a>Blackboxing</h3>
+
+<p>Requirements: Two domains. For example, <a href="http://hileco.com">hileco.com</a> ("Host Domain" &amp; "Blackbox Domain") and sandbox.hileco.com ("Sandbox Domain"). The blackbox domain has information, which the sandbox domain must never know.</p>
+
+<p>Blackboxing allows the sandbox domain to interact with the blackbox domain, for example; a blackbox domain could send out HTTP requests to a backend, requests which contain a user's session token. The sandbox domain should never have the user's session token. The solution to this is blackboxing, the sandbox domain can execute code which may need such an HTTP request to be sent, the sandbox domain can then "ask" the blackbox domain, via SandJS, to perform such a request, the blackbox domain can safely send the request to the backend, the backend can verify the session token, and the blackbox can return the result back to the sandbox domain.</p>
+
+<h2>
+<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h2>
+
+<p><a href="https://github.com/hileco" class="user-mention">@hileco</a>
+<a href="https://github.com/skphilipp" class="user-mention">@skphilipp</a></p>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>
