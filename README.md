@@ -10,7 +10,7 @@ Sandboxing
 
 Requirements: Two domains. For example, [hileco.com](http://hileco.com) ("Host Domain") and sandbox.hileco.com ("Sandbox Domain"). The sandbox domain must be solely dedicated to executing potentially unsafe JavaScript ("Code").
 
-Sandboxing allows you to execute code in the sandbox domain, without it being able to harm the host domain. The host domain loads an iframe to the sandbox domain, and they connect via window#postMessage, once successfully connected, the host can send code across for the sandbox domain to interpret and or execute.
+Sandboxing allows you to execute code in the sandbox domain, without it being able to harm the host domain. The host domain connects to the sandbox domain via SandJS ( via iframes ), and can then send code across for the sandbox domain to interpret and or execute.
 
 Blackboxing
 -----------
