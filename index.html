@@ -30,20 +30,49 @@
 
       </header>
       <section>
-        <h2>
-<a name="sandjs" class="anchor" href="#sandjs"><span class="octicon octicon-link"></span></a>SandJS</h2>
+        <h1>
+<a name="sandjs" class="anchor" href="#sandjs"><span class="octicon octicon-link"></span></a>SandJS</h1>
 
-<p>SandJS allows communication between two windows, with two very powerful concepts; Sandboxing and Blackboxing.</p>
+<p>JavaScript Sandboxing &amp; "Blackboxing".</p>
 
-<h3>
-<a name="sandboxing" class="anchor" href="#sandboxing"><span class="octicon octicon-link"></span></a>Sandboxing</h3>
+<p>SandJS allows communication between two windows, an iframe host and a child iframe. This allows for two very powerful concepts, Sandboxing evaluations and Blackboxing information.</p>
+
+<h2>
+<a name="sandboxing" class="anchor" href="#sandboxing"><span class="octicon octicon-link"></span></a>Sandboxing</h2>
 
 <p>Requirements: Two domains. For example, <a href="http://hileco.com">hileco.com</a> ("Host Domain") and sandbox.hileco.com ("Sandbox Domain"). The sandbox domain must be solely dedicated to executing potentially unsafe JavaScript ("Code").</p>
 
 <p>Sandboxing allows you to execute code in the sandbox domain, without it being able to harm the host domain. The host domain connects to the sandbox domain via SandJS, and can then send code across for the sandbox domain to interpret and or execute.</p>
 
 <h3>
-<a name="blackboxing" class="anchor" href="#blackboxing"><span class="octicon octicon-link"></span></a>Blackboxing</h3>
+<a name="sample-sandboxing-expressions" class="anchor" href="#sample-sandboxing-expressions"><span class="octicon octicon-link"></span></a>Sample: Sandboxing expressions</h3>
+
+<p>In the following sample a sandbox frame is loaded, a message is sent to it, along with a callback reference. SandJS enables you to create cross-window callbacks, note that you can not send function references or anything else other than plain serializable objects through, so keep that in mind when designing callbacks. The following example lets the sandbox evaluate the expression "2 + 2", the result of the expression is sent back to the host via the cross-window callback.</p>
+
+<p>Host</p>
+
+<pre><code>require(["sand"], function(sandBox){
+    var box = new sandBox();
+    box.loadFrame("http://sandbox.localhost:8000", "http://sandbox.localhost:8000/sample-sandbox.html");
+    box.sendCallback("evaluate", "2 + 2", function(result){
+        console.log(result);
+    }, true);
+});
+</code></pre>
+
+<p>Sandbox</p>
+
+<pre><code>require(["sand"], function(sandBox){
+    var box = new sandBox();
+    box.addListener("evaluate", function(data, callback){
+        callback(eval(data));
+    });
+    box.loadParent("http://localhost:8000");
+});
+</code></pre>
+
+<h2>
+<a name="blackboxing" class="anchor" href="#blackboxing"><span class="octicon octicon-link"></span></a>Blackboxing</h2>
 
 <p>Requirements: Two domains. For example, <a href="http://hileco.com">hileco.com</a> ("Host Domain" &amp; "Blackbox Domain") and sandbox.hileco.com ("Sandbox Domain"). The blackbox domain has information, which the sandbox domain must never know.</p>
 
