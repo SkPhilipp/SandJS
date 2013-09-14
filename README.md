@@ -3,7 +3,7 @@ SandJS
 
 JavaScript Sandboxing &amp; "Blackboxing".
 
-SandJS allows communication between two windows, with two very powerful concepts, Sandboxing and Blackboxing.
+SandJS allows communication between two windows, a host and a child iframe.
 
 Sandboxing
 ----------
