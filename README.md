@@ -25,6 +25,7 @@ Sandboxing Sample
 In the following sample a sandbox frame is loaded, a message is sent to it, along with a callback reference. SandJS enables you to create cross-window callbacks, note that you can not send function references or anything else other than plain serializable objects through, so keep that in mind when designing callbacks. The following example lets the sandbox evaluate the expression "2 + 2", the result of the expression is sent back to the host via the cross-window callback.
 
 Host
+
 	<!doctype html>
 	<html>
 	    <head>
@@ -44,6 +45,7 @@ Host
 	</html>
 
 Sandbox
+
 	<!doctype html>
 	<html>
 	    <head>
