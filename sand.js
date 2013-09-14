@@ -5,7 +5,7 @@ define("sand", [], function(){
 	/**
 	 * Box constructor, sets up an empty box and registers the event handlers.
 	 */
-    var Box = function (){
+	var Box = function (){
 		this.domain = null;
 		this.iframe = null;
 		this.boxframe = null;
@@ -16,7 +16,7 @@ define("sand", [], function(){
 		this.callback_id = 0;
 		var reference = this;
 		var handler = function(event){
-            if (event.origin == reference.domain) {
+			if (event.origin == reference.domain) {
 				reference.handle(event.data);
 			}
 		};
@@ -26,7 +26,7 @@ define("sand", [], function(){
 		else {
 			window.attachEvent('onmessage', handler);
 		}
-    };
+	};
 
 	/**
 	 * Sets the boxframe to a window reference, can be used for example with window.parent.
@@ -52,10 +52,10 @@ define("sand", [], function(){
 			this.iframe.style.border = 'none';
 			document.body.appendChild(this.iframe);
 			this.boxframe = this.iframe.contentWindow;
-            var reference = this;
-            this.iframe.onload = function(){
-                reference.sendRaw('box-loaded');
-            };
+			var reference = this;
+			this.iframe.onload = function(){
+				reference.sendRaw('box-loaded');
+			};
 		}
 	};
 
@@ -74,7 +74,7 @@ define("sand", [], function(){
 	 * Handles incoming messages that match the *box's domain.
 	 */
 	Box.prototype.handle = function (message) {
-        if(this.loaded){
+		if(this.loaded){
 			var reference = this;
 			// if the message starts with box-callback
 			if(message.type == 'box-callback'){
@@ -87,14 +87,14 @@ define("sand", [], function(){
 				}
 
 			}
-            var receivers = this.listeners[message.type];
-            for(var receivers_index in receivers){
-                receivers[receivers_index](message.data);
-            }
+			var receivers = this.listeners[message.type];
+			for(var receivers_index in receivers){
+				receivers[receivers_index](message.data);
+			}
 		}
-        else {
+		else {
 			if (message.type == 'box-loaded') {
-			    this.loaded = true;
+				this.loaded = true;
 				for (var queue_index in this.queue) {
 					var item = this.queue[queue_index];
 					this.sendRaw(item.type, item.data);
@@ -141,7 +141,7 @@ define("sand", [], function(){
 			'type': type,
 			'data': data
 		};
-        if(!this.loaded){
+		if(!this.loaded){
 			this.queue.push(message);
 		}
 		else{
@@ -183,6 +183,6 @@ define("sand", [], function(){
 		});
 	};
 
-    return Box;
+	return Box;
 
 });
