@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+    <head>
+        <script data-main="/static/js/sand.js" src="/static/js/lib/require.js"></script>
+        <script>
+            require(["sand"], function(sandBox){
+                var box = new sandBox();
+                box.loadFrame("http://sandbox.localhost:8000", "http://sandbox.localhost:8000/test/sandbox");
+                box.sendCallback("hello", "world", function(data){
+                    console.log(data);
+                }, true);
+            });
+        </script>
+    </head>
+    <body>
+    </body>
+</html>
