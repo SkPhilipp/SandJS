@@ -5,7 +5,7 @@
         <script>
             require(["sand"], function(sandBox){
                 var box = new sandBox();
-                box.loadFrame("http://sandbox.localhost:8000", "http://sandbox.localhost:8000/test/sandbox");
+                box.loadFrame("http://sandbox.localhost:8000", "http://sandbox.localhost:8000/sample-sandbox.html");
                 box.sendCallback("hello", "world", function(data){
                     console.log(data);
                 }, true);
