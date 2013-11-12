@@ -1,8 +1,8 @@
 # SandJS
 
-JavaScript Sandboxing &amp; "Blackboxing".
+JavaScript Sandboxing.
 
-SandJS allows communication between two windows, an iframe host and a child iframe. This allows for two very powerful concepts, Sandboxing evaluations and Blackboxing information.
+SandJS allows communication between two windows, an iframe host and a child iframe. This allows for safe Sandboxing of JavaScript.
 
 ## Sandboxing
 
@@ -33,13 +33,3 @@ Sandbox
         });
         box.loadParent("http://localhost:8000");
     });
-
-## Blackboxing
-
-Requirements: Two domains. For example, [hileco.com](http://hileco.com) ("Host Domain" &amp; "Blackbox Domain") and sandbox.hileco.com ("Sandbox Domain"). The blackbox domain has information, which the sandbox domain must never know.
-
-Blackboxing allows the sandbox domain to interact with the blackbox domain, for example; a blackbox domain could send out HTTP requests to a backend, requests which contain a user's session token. The sandbox domain should never have the user's session token. The solution to this is blackboxing, the sandbox domain can execute code which may need such an HTTP request to be sent, the sandbox domain can then "ask" the blackbox domain, via SandJS, to perform such a request, the blackbox domain can safely send the request to the backend, the backend can verify the session token, and the blackbox can return the result back to the sandbox domain.
-
-## Authors and Contributors
-@hileco
-@skphilipp
