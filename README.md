@@ -4,13 +4,11 @@ JavaScript Sandboxing.
 
 SandJS allows communication between two windows, an iframe host and a child iframe. This allows for safe Sandboxing of JavaScript.
 
-## Sandboxing
+## Examples
 
-Requirements: Two domains. For example, [hileco.com](http://hileco.com) ("Host Domain") and sandbox.hileco.com ("Sandbox Domain"). The sandbox domain must be solely dedicated to executing potentially unsafe JavaScript ("Code").
+Requirements: Two domains. For example, [hileco.com](http://hileco.com) ("Host Domain") and sandbox.hileco.com ("Sandbox Domain"). The sandbox domain must be solely dedicated to executing potentially unsafe JavaScript ("Code"). To be even more safe, you should use two separate domains, do not use subdomains if you do not have full control over cookies.
 
 Sandboxing allows you to execute code in the sandbox domain, without it being able to harm the host domain. The host domain connects to the sandbox domain via SandJS, and can then send code across for the sandbox domain to interpret and or execute.
-
-### Sample: Sandboxing expressions
 
 In the following sample a sandbox frame is loaded, a message is sent to it, along with a callback reference. SandJS enables you to create cross-window callbacks, note that you can not send function references or anything else other than plain serializable objects through, so keep that in mind when designing callbacks. The following example lets the sandbox evaluate the expression "2 + 2", the result of the expression is sent back to the host via the cross-window callback.
 
@@ -33,3 +31,5 @@ Sandbox
         });
         box.loadParent("http://localhost:8000");
     });
+
+SandJS will take care of waiting for the sandbox window to load, sending any queued messages, etc.
