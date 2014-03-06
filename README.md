@@ -1,5 +1,7 @@
 # SandJS
 
+_This project is no longer maintained and part of my source code "attic". Feel free to use it though, works fine._
+
 JavaScript Sandboxing.
 
 SandJS allows communication between two windows, an iframe host and a child iframe. This allows for safe Sandboxing of JavaScript.
